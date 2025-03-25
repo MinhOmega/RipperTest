@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 16,
+    borderRadius: 8,
   },
   loginButtonDisabled: {
     backgroundColor: 'rgba(0, 0, 0, 0.04)',
