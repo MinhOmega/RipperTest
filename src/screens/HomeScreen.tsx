@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {showErrorToast} from '../components/Toast';
+import BookingSkeleton from '../components/BookingSkeleton';
 import colors from '../constants/colors';
 import {Booking, SPORT_ICONS, generateBookings} from '../mocks/bookingMocks';
 
@@ -43,6 +44,7 @@ const HomeScreen = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   const loadMoreBookings = () => {
     if (loading || error) return;
@@ -80,6 +82,7 @@ const HomeScreen = () => {
         showErrorToast('Failed to load bookings. Please try again.');
       } finally {
         setLoading(false);
+        setIsInitialLoading(false);
       }
     }, 1000);
   };
@@ -110,6 +113,27 @@ const HomeScreen = () => {
     />
   );
 
+  const renderSkeletonSection = () => (
+    <View>
+      <View style={styles.sectionHeader}>
+        <View style={styles.skeletonHeader} />
+      </View>
+      {[1, 2, 3].map((_, index) => (
+        <BookingSkeleton key={index} />
+      ))}
+    </View>
+  );
+
+  if (isInitialLoading) {
+    return (
+      <View style={styles.container}>
+        {[1, 2, 3].map((_, index) => (
+          <View key={index}>{renderSkeletonSection()}</View>
+        ))}
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <SectionList
@@ -121,7 +145,10 @@ const HomeScreen = () => {
         onEndReachedThreshold={0.5}
         ListFooterComponent={
           loading ? (
-            <ActivityIndicator size="large" color={colors.primary} />
+            <View>
+              {renderSkeletonSection()}
+              <ActivityIndicator size="large" color={colors.primary} />
+            </View>
           ) : null
         }
       />
@@ -171,6 +198,12 @@ const styles = StyleSheet.create({
   timeText: {
     fontSize: 16,
     color: colors.gray666,
+  },
+  skeletonHeader: {
+    width: 120,
+    height: 20,
+    backgroundColor: colors.lightGray,
+    borderRadius: 4,
   },
 });
 

@@ -1,25 +1,22 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
-
-import LoginScreen from './src/screens/LoginScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import HeaderLeft from './src/components/HeaderLeft';
 import {toastConfig} from './src/components/Toast';
-import {RootStackParamList} from './src/types/navigation';
 import colors from './src/constants/colors';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import ArrowSVG from './src/assets/svg/Arrow';
+import HomeScreen from './src/screens/HomeScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import {RootStackParamList} from './src/types/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const homeScreenOptions = ({navigation}: any) => ({
+  headerLeft: () => <HeaderLeft onPress={() => navigation.goBack()} />,
+  headerTitle: () => null,
+  gestureEnabled: false,
+});
 
 const App = () => {
   return (
@@ -35,6 +32,7 @@ const App = () => {
             headerTitleStyle: {
               fontWeight: '600',
             },
+            title: '',
           }}>
           <Stack.Screen
             name="Login"
@@ -44,18 +42,7 @@ const App = () => {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={({navigation}) => ({
-              headerLeft: () => (
-                <TouchableOpacity 
-                  style={styles.headerLeft}
-                  onPress={() => navigation.goBack()}>
-                  <ArrowSVG />
-                  <Text style={styles.headerTitle}>Home</Text>
-                </TouchableOpacity>
-              ),
-              headerTitle: () => null,
-              gestureEnabled: false,
-            })}
+            options={homeScreenOptions}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -63,17 +50,5 @@ const App = () => {
     </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginLeft: 8,
-  },
-});
 
 export default App;

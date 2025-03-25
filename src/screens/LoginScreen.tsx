@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 24,
-    color: '#000',
+    color: colors.black,
   },
   inputContainer: {
     marginBottom: 16,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 8,
-    color: '#000',
+    color: colors.black,
   },
   input: {
     height: 52,
@@ -121,11 +121,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 16,
     fontSize: 16,
-    backgroundColor: '#fff',
-    color: '#000',
+    backgroundColor: colors.white,
+    color: colors.black,
   },
   loginButton: {
-    backgroundColor: '#FF8C40',
+    backgroundColor: colors.orange,
     height: 52,
     justifyContent: 'center',
     alignItems: 'center',
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.04)',
   },
   loginButtonText: {
-    color: '#B5B5B5',
+    color: colors.borderColor,
     fontSize: 16,
     fontWeight: '500',
     lineHeight: 24,

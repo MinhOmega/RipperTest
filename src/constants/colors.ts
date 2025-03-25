@@ -13,6 +13,7 @@ const colors = {
   borderColor: '#B5B5B5',
   gray666: '#666666',
   grayB2: '#B2B2B2',
+  orange: '#FF8C40',
 };
 
 export default colors;
