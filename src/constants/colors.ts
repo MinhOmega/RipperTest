@@ -1,27 +1,4 @@
-export type ColorType = {
-  primary: string;
-  secondary: string;
-  tertiary: string;
-  error: string;
-  white: string;
-  black: string;
-  gray: string;
-  lightGray: string;
-  darkGray: string;
-  blue: string;
-  green: string;
-  borderColor: string;
-  gray666: string;
-  grayB2: string;
-  orange: string;
-  text: string;
-  placeholder: string;
-  disabled: string;
-  success: string;
-  warning: string;
-  info: string;
-  blackText: string;
-};
+export type ColorType = Record<string, string>;
 
 const colors: ColorType = {
   primary: '#FF6B00',
