@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import ArrowSVG from '../assets/svg/Arrow';
+import colors from '../constants/colors';
 
 const HeaderLeft = ({onPress}: {onPress: () => void}) => (
   <TouchableOpacity style={styles.headerLeft} onPress={onPress}>
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 8,
     lineHeight: 26,
+    color: colors.black,
   },
 });
 

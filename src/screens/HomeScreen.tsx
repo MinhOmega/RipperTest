@@ -7,7 +7,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import {showErrorToast} from '../components/Toast';
 import BookingSkeleton from '../components/BookingSkeleton';
 import colors from '../constants/colors';
 import {Booking, SPORT_ICONS, generateBookings} from '../mocks/bookingMocks';
@@ -28,7 +27,7 @@ const BookingItem = ({
   return (
     <View style={[styles.bookingItem, isLastItem && styles.lastBookingItem]}>
       <View style={styles.sportInfo}>
-        <SportIcon width={24} height={24} color={colors.primary} />
+        <SportIcon width={30} height={30} color={colors.primary} />
         <Text style={styles.sportText}>{booking.sport}</Text>
       </View>
       <Text style={styles.timeText}>
@@ -79,7 +78,6 @@ const HomeScreen = () => {
         setPage(p => p + 1);
       } catch (err) {
         setError(true);
-        showErrorToast('Failed to load bookings. Please try again.');
       } finally {
         setLoading(false);
         setIsInitialLoading(false);
@@ -119,7 +117,7 @@ const HomeScreen = () => {
         <View style={styles.skeletonHeader} />
       </View>
       {[1, 2, 3].map((_, index) => (
-        <BookingSkeleton key={index} />
+        <BookingSkeleton key={index} isLastItem={index === 2} />
       ))}
     </View>
   );
@@ -168,8 +166,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   sectionHeaderText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
+    color: colors.blackText,
+    lineHeight: 20,
   },
   bookingItem: {
     flexDirection: 'row',
@@ -192,12 +192,16 @@ const styles = StyleSheet.create({
   },
   sportText: {
     marginLeft: 12,
-    fontSize: 16,
-    fontWeight: '500',
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.blackText,
+    lineHeight: 20,
   },
   timeText: {
-    fontSize: 16,
-    color: colors.gray666,
+    fontSize: 14,
+    color: colors.blackText,
+    fontWeight: '600',
+    lineHeight: 20,
   },
   skeletonHeader: {
     width: 120,

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {StyleSheet, View, Animated} from 'react-native';
 import colors from '../constants/colors';
 
-const BookingSkeleton = () => {
+const BookingSkeleton = ({isLastItem}: {isLastItem: boolean}) => {
   const opacity = new Animated.Value(0.3);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const BookingSkeleton = () => {
   }, []);
 
   return (
-    <View style={styles.bookingItem}>
+    <View style={[styles.bookingItem, isLastItem && styles.lastBookingItem]}>
       <View style={styles.sportInfo}>
         <Animated.View style={[styles.skeletonIcon, {opacity}]} />
         <Animated.View style={[styles.skeletonText, {opacity}]} />
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   skeletonIcon: {
-    width: 24,
-    height: 24,
+    width: 30,
+    height: 30,
     backgroundColor: colors.lightGray,
     borderRadius: 12,
   },
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
     height: 20,
     backgroundColor: colors.lightGray,
     borderRadius: 4,
+  },
+  lastBookingItem: {
+    marginBottom: 20,
   },
 });
 

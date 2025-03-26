@@ -9,7 +9,6 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation';
-import {showErrorToast} from '../components/Toast';
 import colors from '../constants/colors';
 import LogoSVG from '../assets/svg/Logo';
 
@@ -26,17 +25,7 @@ const LoginScreen = () => {
   const isFormValid = email.trim() !== '' && password.trim() !== '';
 
   const handleLogin = () => {
-    if (!email.includes('@')) {
-      showErrorToast('Please enter a valid email address');
-      return;
-    }
-
-    if (password.length < 6) {
-      showErrorToast('Password must be at least 6 characters long');
-      return;
-    }
-
-    // Simulate successful login
+    // According to requirements, no validations needed
     navigation.navigate('Home');
   };
 
@@ -54,7 +43,7 @@ const LoginScreen = () => {
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
-          placeholderTextColor="#999"
+          placeholderTextColor={colors.placeholder}
         />
       </View>
 
@@ -66,7 +55,7 @@ const LoginScreen = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
-          placeholderTextColor="#999"
+          placeholderTextColor={colors.placeholder}
         />
       </View>
 
@@ -104,7 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 24,
-    color: colors.black,
+    color: colors.text,
   },
   inputContainer: {
     marginBottom: 16,
@@ -112,7 +101,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 8,
-    color: colors.black,
+    color: colors.text,
   },
   input: {
     height: 52,
@@ -122,10 +111,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     fontSize: 16,
     backgroundColor: colors.white,
-    color: colors.black,
+    color: colors.text,
   },
   loginButton: {
-    backgroundColor: colors.orange,
+    backgroundColor: colors.primary,
     height: 52,
     justifyContent: 'center',
     alignItems: 'center',
@@ -136,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.04)',
   },
   loginButtonText: {
-    color: colors.borderColor,
+    color: colors.text,
     fontSize: 16,
     fontWeight: '500',
     lineHeight: 24,

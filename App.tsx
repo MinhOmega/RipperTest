@@ -2,9 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import Toast from 'react-native-toast-message';
 import HeaderLeft from './src/components/HeaderLeft';
-import {toastConfig} from './src/components/Toast';
 import colors from './src/constants/colors';
 import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
@@ -46,7 +44,6 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      <Toast config={toastConfig} />
     </SafeAreaProvider>
   );
 };
